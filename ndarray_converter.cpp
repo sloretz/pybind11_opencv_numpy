@@ -129,7 +129,7 @@ public:
         if( cn > 1 )
             _sizes[dims++] = cn;
 #if CV_MAJOR_VERSION < 4
-        PyObject* o = PyArray_SimpleNew(dims, static_cast<npy_intp *>(_sizes), typenum);
+        PyObject* o = PyArray_SimpleNew(dims, &(_sizes[0]), typenum);
 #else
         // cv::AutoBuffer::data() was added in OpenCV 3.4.3
         PyObject* o = PyArray_SimpleNew(dims, _sizes.data(), typenum);
