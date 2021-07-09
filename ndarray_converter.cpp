@@ -133,8 +133,7 @@ public:
         PyObject* o = PyArray_SimpleNew(dims, _sizes.data(), typenum);
 #else
         // Use older cv::AutoBuffer::operator _Tp*()
-        npy_intp * dbg_pointer = &(_sizes[0]);
-        PyObject* o = PyArray_SimpleNew(dims, dbg_pointer, typenum);
+        PyObject* o = PyArray_SimpleNew(dims, &(_sizes[0]), typenum);
 #endif
         if(!o)
             CV_Error_(Error::StsError, ("The numpy array of typenum=%d, ndims=%d can not be created", typenum, dims));
